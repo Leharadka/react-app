@@ -1,7 +1,7 @@
 import "./Header.css";
 function Header() {
   return (
-    <>Logo</>
+    <img className='logo' src="/logosvg.svg" alt="Логотип журнала" />
   );
 }
 

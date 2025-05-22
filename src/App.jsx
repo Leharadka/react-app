@@ -1,8 +1,10 @@
+
 import "./App.css";
 import Button from "./components/Button/Button";
 import CardButton from "./components/CardButton/CardButton";
 import Header from "./components/Header/Header";
 import JournalAddButton from './components/JournalAddButton/JournalAddButton';
+import JournalForm from './components/JournalForm/JournalForm';
 import JournalItem from "./components/JournalItem/JournalItem";
 import JournalList from "./components/JournalList/JournalList";
 import Body from "./layouts/Body/Body";
@@ -22,6 +24,7 @@ function App() {
     },
   ];
 
+ 
   // return React.createElement('div', {}, 'Проект');
 
   return (
@@ -47,7 +50,7 @@ function App() {
         </JournalList>
       </LeftPanel>
       <Body>
-        Body
+        <JournalForm/>
       </Body>
     </div>
   );

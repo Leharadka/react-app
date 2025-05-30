@@ -1,14 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import styles from "./JournalForm.module.css";
 import cn from "classnames";
 
+const INITIAL_STATE = {
+  title: true,
+  post: true,
+  date: true,
+};
+
 function JournalForm({ onSubmit }) {
-  const [formValidState, setFormValidState] = useState({
-    title: true,
-    post: true,
-    date: true,
-  });
+  const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+
+  useEffect(() => {
+    let timerId;
+    if (!formValidState.data || !formValidState.post || !formValidState.title) {
+      setTimeout(() => {
+        setFormValidState(INITIAL_STATE);
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [formValidState]);
 
   const addJournalItem = (e) => {
     e.preventDefault();
@@ -51,7 +65,7 @@ function JournalForm({ onSubmit }) {
         />
       </div>
       <div className={styles["form-row"]}>
-        <label for="date" className={styles["form-label"]}>
+        <label htmlFor="date" className={styles["form-label"]}>
           <img src="/calendar.svg" alt="Иконка календаря" />
           <span>Дата</span>
         </label>
@@ -65,19 +79,19 @@ function JournalForm({ onSubmit }) {
         />
       </div>
       <div className={styles["form-row"]}>
-        <label for="tag" className={styles["form-label"]}>
+        <label htmlFor="tag" className={styles["form-label"]}>
           <img src="/folder.svg" alt="Иконка папки" />
           <span>Метки</span>
         </label>
-        <input type="text" id="tag" name="tag" className={styles['input']} />
+        <input type="text" id="tag" name="tag" className={styles["input"]} />
       </div>
 
       <textarea
         name="post"
         id=""
         className={cn(styles["input"], {
-            [styles["invalid"]]: !formValidState.post,
-          })}
+          [styles["invalid"]]: !formValidState.post,
+        })}
       ></textarea>
       <Button text="Сохранить" />
     </form>

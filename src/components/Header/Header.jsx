@@ -1,24 +1,14 @@
-import styles from "./Header.module.css";
+import SelectUser from "../SelectUser/SelectUser";
+import Logo from "../Logo/Logo";
+
+const logos = ["/logo.svg"];
+
 function Header() {
   return (
-    <img className={styles.logo} src="/logosvg.svg" alt="Логотип журнала" />
+    <>
+      <Logo image={logos[0]} />
+      <SelectUser />
+    </>
   );
 }
-
-// export default Header;
-// import SelectUser from '../SelectUser/SelectUser';
-// import Logo from '.logosvg.svg';
-
-// const logos = ['/logosvg.svg', '/vite.svg'];
-
-// function Header() {
-
-// 	return (
-// 		<>
-// 			<Logo image={logos[0]} />
-// 			<SelectUser />
-// 		</>
-// 	);
-// }
-
 export default Header;
